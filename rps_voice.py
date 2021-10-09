@@ -5,11 +5,11 @@ from playsound import playsound
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
-#For Speaking
+#Audio Spaeaking
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
-#Welcome
+#Welcome Message
 def welcome():
     playsound('start.wav')
     print("Rock-paper-scissor is a quick win-loose game")
@@ -18,7 +18,7 @@ def welcome():
     print("___Rock wins over scissor___\n___Scissor wins over paper___\n___Paper wins over rock___")
     print("Are you ready to play the game ? Yes or No ?")
     speak("Are you ready to play the game ? Yes or No ?")
-#Taking voice Command
+#Taking Input in Voice
 def takeCommand():
     r = sr.Recognizer()
     with sr.Microphone() as source:
@@ -58,11 +58,11 @@ def gamewin(p1, p2):
         speak("Sorry, we could not recognize your voice.")
         print("Say that again please...")
         play2()          
-#Computer Turn
+#Computer Choosing Randomly 
 def computer():
     li = ['rock', 'paper', 'scissor']
     return random.choice(li)
-#Determine a Winner
+#Checking For Winner
 def result(a,p1):
     if (a == None):
         print("Computer has Chosen : ",p1)
@@ -81,7 +81,7 @@ def result(a,p1):
         speak("You Loose the Match. Better luck next TIme")
         playsound('loose.wav')
 
-#Start playing
+#Gameplay
 def play():
     op = takeCommand()
     yes_no=['yes','yeah','yes yes','no','no no']
@@ -102,7 +102,7 @@ def play():
         print("Are you ready to play the game ? Yes or No ?")
         speak("Are you ready to play the game ? Yes or No ?")
         play()
-#if rock-paper-scissor are not recognise properly
+#if Input-Voice Coudn't Recognised
 def play2():
     while(True):
         print("Please choose among Rock-Paper-Scissor")
@@ -110,6 +110,6 @@ def play2():
         p2 = takeCommand()
         p1=computer()
         result(gamewin(p1, p2),p1)
-#main function
+#Main Function
 welcome()
 play()
